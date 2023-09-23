@@ -1,0 +1,10 @@
+# ninja log v5
+0	5686	1695004679337158839	/data/tfj/workspace/python_projects/jianzhi/PointNeXt/openpoints/cpp/pointnet2_batch/build/temp.linux-x86_64-3.9/src/ball_query.o	988303abb9808cae
+2	5713	1695004679365158649	/data/tfj/workspace/python_projects/jianzhi/PointNeXt/openpoints/cpp/pointnet2_batch/build/temp.linux-x86_64-3.9/src/sampling.o	3f358cf522495e8b
+1	5736	1695004679385158514	/data/tfj/workspace/python_projects/jianzhi/PointNeXt/openpoints/cpp/pointnet2_batch/build/temp.linux-x86_64-3.9/src/group_points.o	f0d56ed3fafdf18b
+1	5737	1695004679389158486	/data/tfj/workspace/python_projects/jianzhi/PointNeXt/openpoints/cpp/pointnet2_batch/build/temp.linux-x86_64-3.9/src/interpolate.o	fb7282ebc190248
+2	14878	1695004789252390329	/data/tfj/workspace/python_projects/jianzhi/PointNeXt/openpoints/cpp/pointnet2_batch/build/temp.linux-x86_64-3.9/src/group_points_gpu.o	686105358366e568
+2	15275	1695004789648387485	/data/tfj/workspace/python_projects/jianzhi/PointNeXt/openpoints/cpp/pointnet2_batch/build/temp.linux-x86_64-3.9/src/ball_query_gpu.o	9b02fbe83ec761ba
+3	15720	1695004790092384295	/data/tfj/workspace/python_projects/jianzhi/PointNeXt/openpoints/cpp/pointnet2_batch/build/temp.linux-x86_64-3.9/src/interpolate_gpu.o	17a492ce7a68080
+3	16186	1695004790560380934	/data/tfj/workspace/python_projects/jianzhi/PointNeXt/openpoints/cpp/pointnet2_batch/build/temp.linux-x86_64-3.9/src/sampling_gpu.o	d23f9f19bc35980c
+3	18196	1695004792568366501	/data/tfj/workspace/python_projects/jianzhi/PointNeXt/openpoints/cpp/pointnet2_batch/build/temp.linux-x86_64-3.9/src/pointnet2_api.o	9aef28a91f68bbf2

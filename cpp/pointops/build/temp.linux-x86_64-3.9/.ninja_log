@@ -1,0 +1,16 @@
+# ninja log v5
+3	5298	1695004831376085093	/data/tfj/workspace/python_projects/jianzhi/PointNeXt/openpoints/cpp/pointops/build/temp.linux-x86_64-3.9/src/interpolation/interpolation_cuda.o	13d05fe25f6e5a2c
+3	5330	1695004831408084859	/data/tfj/workspace/python_projects/jianzhi/PointNeXt/openpoints/cpp/pointops/build/temp.linux-x86_64-3.9/src/knnquery/knnquery_cuda.o	f7d6b83bb0013cf5
+2	5361	1695004831436084654	/data/tfj/workspace/python_projects/jianzhi/PointNeXt/openpoints/cpp/pointops/build/temp.linux-x86_64-3.9/src/grouping/grouping_cuda.o	113914ebbf635a92
+4	5808	1695004831884081379	/data/tfj/workspace/python_projects/jianzhi/PointNeXt/openpoints/cpp/pointops/build/temp.linux-x86_64-3.9/src/sampling/sampling_cuda.o	fabf2a93902ed3db
+1	5855	1695004831932081028	/data/tfj/workspace/python_projects/jianzhi/PointNeXt/openpoints/cpp/pointops/build/temp.linux-x86_64-3.9/src/ballquery/ballquery_cuda.o	5b432a0cad771432
+1	5864	1695004831940080969	/data/tfj/workspace/python_projects/jianzhi/PointNeXt/openpoints/cpp/pointops/build/temp.linux-x86_64-3.9/src/aggregation/aggregation_cuda.o	32e11aa8c3fddfbf
+4	5870	1695004831948080911	/data/tfj/workspace/python_projects/jianzhi/PointNeXt/openpoints/cpp/pointops/build/temp.linux-x86_64-3.9/src/subtraction/subtraction_cuda.o	2719d9cfbef5b332
+2	15165	1695004841236012876	/data/tfj/workspace/python_projects/jianzhi/PointNeXt/openpoints/cpp/pointops/build/temp.linux-x86_64-3.9/src/ballquery/ballquery_cuda_kernel.o	1caa00535aa2926e
+1	15215	1695004841284012524	/data/tfj/workspace/python_projects/jianzhi/PointNeXt/openpoints/cpp/pointops/build/temp.linux-x86_64-3.9/src/aggregation/aggregation_cuda_kernel.o	86ab65791fed3b48
+4	15231	1695004841300012406	/data/tfj/workspace/python_projects/jianzhi/PointNeXt/openpoints/cpp/pointops/build/temp.linux-x86_64-3.9/src/sampling/sampling_cuda_kernel.o	c62e725b13a73c75
+3	15283	1695004841356011995	/data/tfj/workspace/python_projects/jianzhi/PointNeXt/openpoints/cpp/pointops/build/temp.linux-x86_64-3.9/src/knnquery/knnquery_cuda_kernel.o	ebd3580abd3016a3
+5	15471	1695004841540010645	/data/tfj/workspace/python_projects/jianzhi/PointNeXt/openpoints/cpp/pointops/build/temp.linux-x86_64-3.9/src/subtraction/subtraction_cuda_kernel.o	5490c7e932529b70
+3	15572	1695004841644009882	/data/tfj/workspace/python_projects/jianzhi/PointNeXt/openpoints/cpp/pointops/build/temp.linux-x86_64-3.9/src/interpolation/interpolation_cuda_kernel.o	ed1039d2d8df629f
+2	15625	1695004841696009500	/data/tfj/workspace/python_projects/jianzhi/PointNeXt/openpoints/cpp/pointops/build/temp.linux-x86_64-3.9/src/grouping/grouping_cuda_kernel.o	2f8e042c75ec10c2
+4	18978	1695004845047984881	/data/tfj/workspace/python_projects/jianzhi/PointNeXt/openpoints/cpp/pointops/build/temp.linux-x86_64-3.9/src/pointops_api.o	a9db5066c18582cb
