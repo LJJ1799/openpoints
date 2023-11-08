@@ -27,7 +27,6 @@ def farthest_point_sampling(points, num_samples):
     sampled_indices = np.zeros(num_samples, dtype=np.int32)
     distances = np.full(num_points, np.inf)
 
-    # 随机选择一个起始点
     start_index = 0
     sampled_indices[0] = start_index
 
@@ -35,13 +34,10 @@ def farthest_point_sampling(points, num_samples):
         last_sampled_index = sampled_indices[i - 1]
         last_sampled_point = points[last_sampled_index]
 
-        # 计算每个点到最后一个采样点的距离
         dist_to_last_sampled = np.linalg.norm(points - last_sampled_point, axis=1)
 
-        # 更新距离数组，保留最小距离
         distances = np.minimum(distances, dist_to_last_sampled)
 
-        # 选择最远的点作为下一个采样点
         next_sampled_index = np.argmax(distances)
         sampled_indices[i] = next_sampled_index
 
@@ -67,7 +63,7 @@ class ToolsDataset(data.Dataset):
         tmp_datas = []
         tmp_names = []
         load_data_path = os.path.join(args.file_path,'pc_{}pts.npz'.format(self.input_num))
-        if os.path.exists(load_data_path): # 加载已有数据
+        if os.path.exists(load_data_path):
             tdatas = np.load(load_data_path,allow_pickle=True)['data']
             tnames = np.load(load_data_path,allow_pickle=True)['name']
             for iii in range(len(tdatas)):
@@ -84,8 +80,8 @@ class ToolsDataset(data.Dataset):
                         self.names.append(tmp_name)
                         continue
                     
-                    pcd=o3d.io.read_point_cloud(tmp_name)#路径需要根据实际情况设置
-                    input=np.asarray(pcd.points)#A已经变成n*3的矩阵
+                    pcd=o3d.io.read_point_cloud(tmp_name)
+                    input=np.asarray(pcd.points)
                     
                     lens = len(input)
         
@@ -95,7 +91,7 @@ class ToolsDataset(data.Dataset):
                         input = tmp_input[:self.input_num ]
                     
                     if lens > self.input_num :
-                        np.random.shuffle(input) # 每次取不一样的1024个点
+                        np.random.shuffle(input)
                         input = farthest_point_sampling(input,self.input_num)
                         
                     self.datas.append(input)
@@ -104,10 +100,10 @@ class ToolsDataset(data.Dataset):
         np.savez(load_data_path,data=self.datas,name=self.names)
         print('data lens: ',len(self.datas))
                   
-        # 计算相似度
+        # calculate similarity
         load_data_sim_path = os.path.join(args.file_path,'pc_{}pts_sim.npz'.format(self.input_num))
         tmpex_name,tmpex_sim = [],[]
-        if os.path.exists(load_data_sim_path): # 加载已有数据
+        if os.path.exists(load_data_sim_path): # load existing data
             tmpex_sim = np.load(load_data_sim_path,allow_pickle=True)['sim']
             tmpex_name = np.load(load_data_sim_path,allow_pickle=True)['name']
         is_calc_sim = False
@@ -123,13 +119,13 @@ class ToolsDataset(data.Dataset):
             l = len(self.datas)      
             self.sim = np.zeros((l,l))
             print('please wait, calculating point cloud similarity ... ')
-            for i in range(l): # 两个for循环可能有点慢
+            for i in range(l):
                 for j in range(i+1,l):  
                     point_cloud1 = o3d.geometry.PointCloud()
-                    point_cloud1.points = o3d.utility.Vector3dVector(pc_normalize(self.datas[i]))  # 示例点云1
+                    point_cloud1.points = o3d.utility.Vector3dVector(pc_normalize(self.datas[i]))
                     point_cloud2 = o3d.geometry.PointCloud()
                     point_cloud2.points = o3d.utility.Vector3dVector(pc_normalize(self.datas[j])) 
-                    mean_distance_t_s = np.mean(point_cloud1.compute_point_cloud_distance(point_cloud2)) # 倒角距离,值越小越相似
+                    mean_distance_t_s = np.mean(point_cloud1.compute_point_cloud_distance(point_cloud2)) #chamfer distance
                     self.sim[i,j] = mean_distance_t_s
                     self.sim[j,i] = mean_distance_t_s
             np.savez(load_data_sim_path,sim=self.sim,name=self.names)
@@ -141,32 +137,27 @@ class ToolsDataset(data.Dataset):
     def __getitem__(self, index):
         # (n, 3)
         input = self.datas[index]
-        # pcd=o3d.io.read_point_cloud(input)#路径需要根据实际情况设置
-        # input=np.asarray(pcd.points)#A已经变成n*3的矩阵
-        if np.random.rand() >= 0.5: # 1是正样本对
+        if np.random.rand() >= 0.5:
             label = 1
         else:
             label = 0
 
         input1 = input
-        if label == 1: # 正样本对
-            msg = '哈哈正样本'
+        if label == 1:
+            msg = 'positive sample'
             input2 = jitter_point_cloud(input[None,...]).squeeze()
-        else: # 负样本对
-            if np.random.rand() >= 0.5: # 生成旋转的负样本对
-                # 生成一个随机旋转矩阵
+        else:
+            if np.random.rand() >= 0.5:
                 random_rotation = R.random()
-                # 获取旋转矩阵的矩阵表示
                 rotation_matrix = random_rotation.as_matrix()
-                # 将点云中的每个点应用旋转
                 input2 = np.dot(rotation_matrix, input.T).T
-                msg = '旋转负样本'
-            else: # 和其他样本生成负样本对
+                msg = 'rotated negative sample'
+            else:
                 sim = self.sim[index]
                 min_idx = np.argsort(sim)
                 neg_id = np.random.choice(min_idx[-100:])
                 input2 = self.datas[neg_id]
-                msg = '其他负样本'
+                msg = 'other negative sample'
                 
         input1 = pc_normalize(input1)
         input1 = torch.from_numpy(input1)
