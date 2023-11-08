@@ -157,7 +157,7 @@ class ToolsDataset(data.Dataset):
                 min_idx = np.argsort(sim)
                 neg_id = np.random.choice(min_idx[-100:])
                 input2 = self.datas[neg_id]
-                msg = 'other negative sample'
+                msg = 'other negative samples'
                 
         input1 = pc_normalize(input1)
         input1 = torch.from_numpy(input1)
