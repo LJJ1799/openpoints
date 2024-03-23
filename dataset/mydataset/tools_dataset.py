@@ -135,13 +135,11 @@ class ToolsDataset(data.Dataset):
         return len(self.datas)
 
     def __getitem__(self, index):
-        # (n, 3)
         input = self.datas[index]
         if np.random.rand() >= 0.5:
             label = 1
         else:
             label = 0
-
         input1 = input
         if label == 1:
             msg = 'positive sample'
