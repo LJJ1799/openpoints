@@ -130,7 +130,6 @@ class ClsHead(nn.Module):
 
 
     def forward(self, end_points):
-        print('uuuuuu')
         if self.global_feat is not None:
             global_feats = []
             for preprocess in self.global_feat:
